@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+	<display-name>LabWebServletJdbcSpring</display-name>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/beans.config.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!-- <servlet> -->
+	<!-- <servlet-name>LoginServlet</servlet-name> -->
+	<!-- <servlet-class>controller.LoginServlet</servlet-class> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>LoginServlet</servlet-name> -->
+	<!-- <url-pattern>/secure/login.controller</url-pattern> -->
+	<!-- </servlet-mapping> -->
+	<servlet>
+		<servlet-name>ProductServlet</servlet-name>
+		<servlet-class>controller.ProductServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductServlet</servlet-name>
+		<url-pattern>/pages/product.controller</url-pattern>
+	</servlet-mapping>
+	<resource-ref>
+		<res-ref-name>jdbc/xxx</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+		<res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>mvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/mvc-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>mvc</servlet-name>
+		<url-pattern>/*.controller.controller</url-pattern>
+	</servlet-mapping>
+</web-app>
