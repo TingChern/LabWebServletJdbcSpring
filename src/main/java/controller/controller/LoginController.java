@@ -7,7 +7,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import model.CustomerBean;
 import model.CustomerService;
@@ -15,10 +17,10 @@ import model.CustomerService;
 @Controller
 public class LoginController {
 	@Autowired
-	private CustomerService customerService = null;
+	private CustomerService customerService;
 
-	@RequestMapping()
-	protected String method(String username, String password, HttpSession session) {
+	@RequestMapping(method= {RequestMethod.GET,RequestMethod.POST},path= {"/login.controller"})
+	protected String method(String username, String password, HttpSession session,Model model) {
 
 		// 接收資料
 
@@ -34,7 +36,6 @@ public class LoginController {
 		}
 
 		if (errors != null && !errors.isEmpty()) {
-			// .getRequestDispatcher("/secure/login.jsp").forward(request, response);
 			return "secure.login";
 		}
 
@@ -44,17 +45,10 @@ public class LoginController {
 		// 根據model執行結果呼叫view元件
 		if (bean == null) {
 			errors.put("password", "登入失敗");
-			// request.getRequestDispatcher("/secure/login.jsp").forward(request, response);
 			return "secure.login";
 
 		} else {
 			session.setAttribute("user", bean);
-
-			// response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
-			// response.setHeader("Location", "/LabWebServletJdbc/index.jsp");
-
-			// response.sendRedirect(path + "/index.jsp");
-			// String path =session.getServletContext().getContextPath();
 			return "index";
 		}
 	}

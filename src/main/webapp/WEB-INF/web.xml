@@ -11,22 +11,7 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	<!-- <servlet> -->
-	<!-- <servlet-name>LoginServlet</servlet-name> -->
-	<!-- <servlet-class>controller.LoginServlet</servlet-class> -->
-	<!-- </servlet> -->
-	<!-- <servlet-mapping> -->
-	<!-- <servlet-name>LoginServlet</servlet-name> -->
-	<!-- <url-pattern>/secure/login.controller</url-pattern> -->
-	<!-- </servlet-mapping> -->
-	<servlet>
-		<servlet-name>ProductServlet</servlet-name>
-		<servlet-class>controller.ProductServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ProductServlet</servlet-name>
-		<url-pattern>/pages/product.controller</url-pattern>
-	</servlet-mapping>
+
 	<resource-ref>
 		<res-ref-name>jdbc/xxx</res-ref-name>
 		<res-type>javax.sql.DataSource</res-type>
@@ -47,6 +32,6 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>mvc</servlet-name>
-		<url-pattern>/*.controller.controller</url-pattern>
+		<url-pattern>*.controller</url-pattern>
 	</servlet-mapping>
 </web-app>

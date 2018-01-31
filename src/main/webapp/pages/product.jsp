@@ -26,7 +26,7 @@ function clearForm() {
 
 <h3>Product Table</h3>
 
-<form action="<c:url value="/pages/product.controller" />" method="get">
+<form action="<c:url value="/product.controller" />" method="get">
 <table>
 	<tr>
 		<td>ID : </td>
